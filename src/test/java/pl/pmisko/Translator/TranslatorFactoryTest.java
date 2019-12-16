@@ -7,7 +7,7 @@ import pl.pmisko.Dictionary.DictionaryType;
 import static org.junit.Assert.*;
 
 public class TranslatorFactoryTest {
-    TranslatorFactory factory = new TranslatorFactory();
+    private TranslatorFactory factory = new TranslatorFactory();
 
     @Test
     public void produceShouldReturnAppropriateDictionaryType() {

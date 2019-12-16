@@ -6,8 +6,8 @@ import org.junit.Test;
 import java.util.Map;
 
 public class DictionaryServiceTest {
-    DictionaryRepository repository = new DictionaryRepository();
-    DictionaryService service = new DictionaryService();
+    private DictionaryRepository repository = new DictionaryRepository();
+    private DictionaryService service = new DictionaryService();
 
     @Test
     public void getDictionaryShouldReturnAppropriateDictionary() {
@@ -21,7 +21,7 @@ public class DictionaryServiceTest {
         DictionaryType icaoType = DictionaryType.ICAO;
 
         morseDictionary = service.getDictionary(morseType);
-        icaoDictionary= service.getDictionary(icaoType);
+        icaoDictionary = service.getDictionary(icaoType);
 
         Assert.assertEquals(aMorse, morseDictionary.get('A'));
         Assert.assertEquals(aIcao, icaoDictionary.get('A'));

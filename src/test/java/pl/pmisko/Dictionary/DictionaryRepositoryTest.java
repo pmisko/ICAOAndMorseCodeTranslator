@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DictionaryRepositoryTest {
-    DictionaryRepository repository= new DictionaryRepository();
+    private DictionaryRepository repository= new DictionaryRepository();
 
     @Test
     public void initDictionaryShouldReturnAppropriateDictionaryMap() {

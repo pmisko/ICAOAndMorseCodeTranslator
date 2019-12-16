@@ -13,7 +13,7 @@ import javax.servlet.ServletException;
 import java.io.IOException;
 @RunWith(MockitoJUnitRunner.class)
 public class TranslatorServletTest {
-    TranslatorServlet servlet;
+    private TranslatorServlet servlet;
 
     private MockHttpServletRequest request;
     private MockHttpServletResponse response;

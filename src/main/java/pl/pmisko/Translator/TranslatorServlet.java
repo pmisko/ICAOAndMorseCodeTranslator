@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.Optional;
 
 @WebServlet(name = "Code", urlPatterns = {"/api"})
-public class TranslatorServlet extends HttpServlet {
+class TranslatorServlet extends HttpServlet {
     private final static String SENTENCE_PARAM = "sentence";
     private final static String CODE_PARAM = "code";
     private final Logger logger = Logger.getLogger(Main.class);
