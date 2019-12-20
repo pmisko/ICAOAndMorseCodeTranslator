@@ -11,6 +11,7 @@ import org.springframework.mock.web.MockHttpServletResponse;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
+
 @RunWith(MockitoJUnitRunner.class)
 public class TranslatorServletTest {
     private TranslatorServlet servlet;
@@ -24,9 +25,10 @@ public class TranslatorServletTest {
         request = new MockHttpServletRequest();
         response = new MockHttpServletResponse();
     }
+
     @Test
     public void doGetWithoutRequestParametersShouldReturnFallBackMsg() throws IOException, ServletException {
-        final String expectedMsg="Incorrect request parameters";
+        final String expectedMsg = "Incorrect request!";
 
         request.addParameter("sentence", "");
         request.addParameter("code", "");
@@ -38,7 +40,7 @@ public class TranslatorServletTest {
 
     @Test
     public void doGetWithoutSentenceParameter() throws IOException, ServletException {
-        final String expectedMsg="Incorrect request parameters";
+        final String expectedMsg = "Please enter the sentence";
 
         request.addParameter("sentence", "");
         request.addParameter("code", "morse");
@@ -47,10 +49,10 @@ public class TranslatorServletTest {
 
         Assert.assertEquals(expectedMsg, response.getContentAsString());
     }
-    @Ignore
+
     @Test
     public void doGetWithoutCodeParameter() throws IOException, ServletException {
-        final String expectedMsg="Incorrect request parameters";
+        final String expectedMsg = "Incorrect request!";
 
         request.addParameter("sentence", "AbC");
         request.addParameter("code", "");

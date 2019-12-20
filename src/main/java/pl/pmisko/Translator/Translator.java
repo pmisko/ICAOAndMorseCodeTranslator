@@ -21,15 +21,15 @@ class Translator implements TranslatorInterface {
         return doTranslation(sentence, appropriateDictionaryMap);
     }
 
-    public DictionaryType getDictionaryType(String type) {
+    DictionaryType getDictionaryType(String type) {
         return factory.produce(type);
     }
 
-    public Map<Character, String> getAppropriateDictionaryMap(DictionaryType type) {
+    Map<Character, String> getAppropriateDictionaryMap(DictionaryType type) {
         return dictionaryService.getDictionary(type);
     }
 
-    public String doTranslation(String sentence, Map<Character, String> dictionary) {
+    private String doTranslation(String sentence, Map<Character, String> dictionary) {
         String translationInProgress = sentence.toUpperCase().chars()
                 .mapToObj(c -> (char) c)
                 .map(c -> {

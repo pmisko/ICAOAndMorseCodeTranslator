@@ -1,6 +1,7 @@
 package pl.pmisko.Translator;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import pl.pmisko.Dictionary.DictionaryType;
 
@@ -10,7 +11,6 @@ import static org.junit.Assert.*;
 
 public class TranslatorTest {
     private Translator translator=new Translator();
-    private String FALL_BACK_SENTENCE = "Please enter the sentence";
 
     @Test
     public void translateShouldReturnTranslatedSentence() {
@@ -25,19 +25,6 @@ public class TranslatorTest {
 
        assertEquals(expectedSentenceMorse,resultSentenceMorse);
        assertEquals(expectedSentenceIcao,resultSentenceIcao);
-    }
-
-    @Test
-    public void translateShouldReturnFallBackMsgWhenSentenceHasNotBeenEntered() {
-        final String codeTypeMorse="morse";
-        final String codeTypeIcao="icao";
-        final String givenSentence="";
-
-        final String resultSentenceMorse = translator.translate(givenSentence, codeTypeMorse);
-        final String resultSentenceIcao = translator.translate(givenSentence, codeTypeIcao);
-
-        assertEquals(FALL_BACK_SENTENCE,resultSentenceMorse);
-        assertEquals(FALL_BACK_SENTENCE,resultSentenceIcao);
     }
 
     @Test

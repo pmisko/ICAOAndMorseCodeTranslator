@@ -7,7 +7,6 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
-@Entity
 class DictionaryRepository {
 
     DictionaryRepository() {

@@ -12,41 +12,56 @@ import java.io.IOException;
 import java.util.Optional;
 
 @WebServlet(name = "Code", urlPatterns = {"/api"})
-class TranslatorServlet extends HttpServlet {
+public class TranslatorServlet extends HttpServlet {
     private final static String SENTENCE_PARAM = "sentence";
     private final static String CODE_PARAM = "code";
+    private final static String FALL_BACK_MSG = "Please enter the sentence";
+    private final static String REQ_WCODE_PARAM_MSG = "Incorrect request!";
     private final Logger logger = Logger.getLogger(Main.class);
     private TranslatorService service = new TranslatorService();
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         logger.info("Got request with parameters" + req.getParameterMap());
         var sentence = req.getParameter(SENTENCE_PARAM);
-        var codeType = req.getParameter(CODE_PARAM);
-        Optional.of(sentence)
-                .filter(s -> !s.isEmpty())
-                .ifPresentOrElse(s -> translate(resp, sentence, codeType), () -> {
-                    badRequest(resp);
-                });
-    }
+        var code = req.getParameter(CODE_PARAM);
 
-    private void badRequest(HttpServletResponse resp) {
-        try {
-            resp.getWriter().write("Incorrect request parameters");
+        if (code.isEmpty()) {
+            resp.getWriter().write(REQ_WCODE_PARAM_MSG);
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-        } catch (IOException e) {
-            e.printStackTrace();
+        } else {
+            getAnswer(resp, sentence, code);
         }
     }
 
-    private void translate(HttpServletResponse resp, String sentence, String codeType) {
-        try {
-            resp.getWriter().write(service.doTranslation(sentence, codeType));
+    private void getAnswer(HttpServletResponse resp, String sentence, String code) throws IOException {
+        if (!sentence.isEmpty()) {
+            resp.getWriter().write(service.doTranslation(sentence, code));
             resp.setStatus(HttpServletResponse.SC_OK);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } else {
+            resp.getWriter().write(FALL_BACK_MSG);
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
     }
 }
+
+//    private void badRequest(HttpServletResponse resp) {
+//        try {
+//            resp.getWriter().write("Incorrect request parameters");
+//            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    private void translate(HttpServletResponse resp, String sentence, String codeType) {
+//        try {
+//            resp.getWriter().write(service.doTranslation(sentence, codeType));
+//            resp.setStatus(HttpServletResponse.SC_OK);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
+
 
