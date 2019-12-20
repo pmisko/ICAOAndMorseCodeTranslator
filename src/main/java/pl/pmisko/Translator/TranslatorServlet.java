@@ -45,23 +45,3 @@ public class TranslatorServlet extends HttpServlet {
         }
     }
 }
-
-//    private void badRequest(HttpServletResponse resp) {
-//        try {
-//            resp.getWriter().write("Incorrect request parameters");
-//            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    private void translate(HttpServletResponse resp, String sentence, String codeType) {
-//        try {
-//            resp.getWriter().write(service.doTranslation(sentence, codeType));
-//            resp.setStatus(HttpServletResponse.SC_OK);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
-
-
