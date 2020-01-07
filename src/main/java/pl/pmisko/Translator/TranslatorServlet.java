@@ -27,7 +27,7 @@ public class TranslatorServlet extends HttpServlet {
         var sentence = req.getParameter(SENTENCE_PARAM);
         var code = req.getParameter(CODE_PARAM);
 
-        if (code.isEmpty()) {
+        if (code==null || code.isEmpty()) {
             resp.getWriter().write(REQ_WCODE_PARAM_MSG);
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         } else {
